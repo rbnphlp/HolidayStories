@@ -19,6 +19,10 @@ app=Flask(__name__)
 app.config['MONGO_DBNAME']="HolidayStories"
 app.config["MONGO_URI"]=MONGO_URI
 
+mongo=PyMongo(app)
+
+
+
 @app.route('/')
 def index():
     return ("Hello world! Test to deploy on heroku"+MONGO_URI)
@@ -26,8 +30,11 @@ def index():
 
 
 "Read Holiday Pages"
+
+@app.route("/add_holidays")
 def added_holidays():
-    return(None)
+
+    return(render_template("holidays.html",holidays=mongo.db.Holidays.find()))
 
 if __name__=="__main__":
         app.run(host=os.environ.get('IP'),
