@@ -63,8 +63,12 @@ def added_holiday_memories():
     return(render_template("Add_memories.html",memories=holiday_memories))
 
 
+"Add Holidays Page"
 
+@app.route("/Add_Holidays")
+def add_holidays():
 
+    return(render_template("Add_Holiday.html",holidays=mongo.db.Holidays.find()))
 
 
 
