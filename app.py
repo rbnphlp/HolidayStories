@@ -23,18 +23,51 @@ mongo=PyMongo(app)
 
 
 
+
+
+
 @app.route('/')
 def index():
     return ("Hello world! Test to deploy on heroku"+MONGO_URI)
 
 
 
-"Read Holiday Pages"
+"Read Holiday Pages for Holiday only Pages"
 
 @app.route("/add_holidays")
 def added_holidays():
 
     return(render_template("holidays.html",holidays=mongo.db.Holidays.find()))
+
+
+"Read Holidays and correponding memories"
+
+
+
+@app.route('/added_holiday_memories')
+def added_holiday_memories():
+   
+    "Do a join/lookup to get memories of the holiday specified :"
+
+    holiday_memories=mongo.db.Holidays.aggregate([{"$lookup": 
+                    {
+    "from": 'Memories',
+    "localField": '_id',
+    "foreignField": 'Holidays_id',
+    "as": 'Holiday_Memories'
+                    }} ,
+
+    {"$unwind":"$Holiday_Memories"}
+    ])
+
+    return(render_template("Add_memories.html",memories=holiday_memories))
+
+
+
+
+
+
+
 
 if __name__=="__main__":
         app.run(host=os.environ.get('IP'),
