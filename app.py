@@ -42,8 +42,6 @@ def added_holidays():
 
 "Read Holidays and correponding memories"
 
-
-
 @app.route('/added_holiday_memories')
 def added_holiday_memories():
    
@@ -65,10 +63,15 @@ def added_holiday_memories():
 
 "Add Holidays Page"
 
-@app.route("/Add_Holidays")
-def add_holidays():
+@app.route("/Add_Holidays",methods=["GET","POST"])
+def Add_Holidays():
+ 
+    Holidays = mongo.db.Holidays
+    Holidays.insert_one(request.form.to_dict())
 
     return(render_template("Add_Holiday.html",holidays=mongo.db.Holidays.find()))
+
+
 
 
 
