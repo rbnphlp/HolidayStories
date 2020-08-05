@@ -73,6 +73,12 @@ def Add_Holidays():
 
 
 
+"Delete Holidays in Holidays Page"
+
+"Edit Holidays Page"
+
+
+
 
 
 
