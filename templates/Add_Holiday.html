@@ -6,38 +6,67 @@
 
 <body>
     
-<h4>Notes</h4>
 
 
 {% block content %}
 
-<h4> Add Holidays</h4>
+
+<div class="container">
 
 
-<div class="row">
+    <h4> Add Holidays</h4>
+
+
+    <div class="row">
     <form class="col s12" method="POST">
-      
-      <div class="row">
+        
+        <div class="row">
         <div class="input-field col s12">
-          <input id="Title" name="Title" type="text" class="active">
-          <label for="Title">Add a Holiday</label>
+            <input id="Title" name="Title" type="text" class="active">
+            <label for="Title">Add a Holiday</label>
         </div>
-      </div>
+        </div>
 
     </form>
-  </div>
+    </div>
 
-<div class="lines"></div>
+    <div class="row">
 
-{% for holiday in holidays%}
-<ul class="list">
-  <li>{{holiday.Title}}</li>
-</ul>
+        <div class="lines"></div>
 
-{% endfor %}
+        
+          
+            
+                {% for holiday in holidays%}
+                <ul class="list">
+                    <div class="Holiday_title">
+                    <li>{{holiday.Title}} </li>
+                    
+                    </div>
+                      
+                    <div class="container">
+                    <a class="waves-effect waves-light btn">Delete</a>
+                    <a class="waves-effect waves-light btn">Edit</a>
+
+                    </div>
+                    
+
+                </ul>
+
+                {% endfor %}
+
+            
+          
+
+
+            
+        
+   
+    </div>
 
 
 
+</div>
 
 {% endblock %}
 
