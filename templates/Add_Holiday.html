@@ -18,7 +18,7 @@
 
 
     <div class="row">
-    <form class="col s12" method="POST">
+    <form action="{{url_for('Add_Holidays')}}"   class="col s12" method="POST">
         
         <div class="row">
         <div class="input-field col s12">
@@ -46,7 +46,7 @@
                      <div class="col s8 Holiday_title">{{holiday.Title}} </div>
 
                        <div class="col s4 buttons">
-                    <a class="waves-effect waves-light btn">Delete</a>
+                    <a href="{{url_for('delete_holiday',Holidays_id=holiday._id)}}" class="waves-effect waves-light btn">Delete</a>
                     <a class="waves-effect waves-light btn">Edit</a>
 
                     </div>

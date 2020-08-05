@@ -31,10 +31,16 @@ def index():
     return ("Hello world! Test to deploy on heroku"+MONGO_URI)
 
 
+@app.route('/get_holidays',methods=["GET","POST"])
+def get_holidays():
+    
+    Holidays = mongo.db.Holidays.find()
+    return(render_template("Add_Holiday.html",holidays=Holidays))
+
 
 "Read Holiday Pages for Holiday only Pages"
 
-@app.route("/add_holidays")
+@app.route("/add_holidays",methods=["GET","POST"])
 def added_holidays():
 
     return(render_template("holidays.html",holidays=mongo.db.Holidays.find()))
@@ -65,18 +71,28 @@ def added_holiday_memories():
 
 @app.route("/Add_Holidays",methods=["GET","POST"])
 def Add_Holidays():
- 
+    
+
     Holidays = mongo.db.Holidays
     Holidays.insert_one(request.form.to_dict())
 
-    return(render_template("Add_Holiday.html",holidays=mongo.db.Holidays.find()))
+
+    return(redirect(url_for("get_holidays")))
+
 
 
 
 "Delete Holidays in Holidays Page"
 
-"Edit Holidays Page"
 
+@app.route("/delete_holiday/<Holidays_id>")
+def delete_holiday(Holidays_id):
+    mongo.db.Holidays.remove({"_id": ObjectId(Holidays_id)})
+
+
+    return(redirect(url_for("get_holidays")))
+
+    
 
 
 
