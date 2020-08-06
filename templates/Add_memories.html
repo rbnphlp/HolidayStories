@@ -17,7 +17,7 @@
 
     <div class="row">
     
-    <h4>Add  a memory for {{Holiday_title}}</h4>
+    <h4>Add  a memory for {{Holiday['Title']}}</h4>
     
     </div>
 
@@ -29,7 +29,9 @@
       <div class="collapsible-body">
       
         <div class="row">
-        <form   class="col s12" method="POST">
+
+        
+        <form   action="{{url_for('Submit_Memory',Holidays_id=Holiday)}}" class="col s12" method="POST">
             
             <div class="row">
             <div class="input-field col s12">
@@ -80,7 +82,7 @@
 
         <!--Submit button-->
         <div class="row submit_memory">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button href="{{url_for('Submit_Memory',Holidays_id=Holiday)}}" class="btn waves-effect waves-light" >Submit
             <i class="material-icons right">cloud</i>
         </button>
         </div>

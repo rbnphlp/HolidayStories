@@ -5,6 +5,7 @@ import requests
 from bson.objectid import ObjectId
 import os 
 from dotenv import load_dotenv
+import ast
 
 
 "Load enviornment variables"
@@ -101,9 +102,21 @@ def Add_memories(Holidays_id):
     
     Holiday=mongo.db.Holidays.find_one({"_id": ObjectId(Holidays_id)})
 
-    Holiday_title=Holiday['Title']
-    return(render_template('Add_memories.html',Holiday_title=Holiday_title))
+ 
+    return(render_template('Add_memories.html',Holiday=Holiday))
 
+
+
+" Submit memory info to mongodb & AWS  including HolidayID + imagelink "  
+
+@app.route("/Submit_Memory/<Holidays_id>",methods=["GET","POST"])
+def Submit_Memory(Holidays_id):
+    print("Hello")
+    print("Holidays passed: "+ Holidays_id)
+    Memories_db=mongo.db.Memories
+    
+    Memories_db.insert_many([request.form.to_dict(),dict(Holidays_id)])
+    return(render_template('Add_memories.html',Holiday=Holidays_id))
 
 
 if __name__=="__main__":
