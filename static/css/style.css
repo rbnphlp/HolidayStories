@@ -23,3 +23,18 @@
 }
 
 /** change button configs**/
+form.col.s12 {
+
+width: 75%;
+
+
+}
+
+input#submit_title {
+    display: none;
+}
+
+.holidays_added{
+
+    padding-top :0.75em;
+}

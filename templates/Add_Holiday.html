@@ -14,23 +14,50 @@
 <div class="container">
 
 
-    <h4> Add Holidays</h4>
+    
+    <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">card_travel</i>Add a Holiday</div>
+      <div class="collapsible-body">
+      
+        <div class="row">
+        <form action="{{url_for('Add_Holidays')}}"   class="col s12" method="POST">
+            
+            <div class="row">
+            <div class="input-field col s12">
+                <input id="Title" name="Title" type="text" class="active">
+                <label for="Title">Enter a Title for your  Holiday  (Example: Mountaineering Trip) </label>
+                  <input id="submit_title" name="submit_title" type="submit" class="active">
+            </div>
 
+            
+            </div>
 
-    <div class="row">
-    <form action="{{url_for('Add_Holidays')}}"   class="col s12" method="POST">
-        
+            <!-- Need to wire this up-->    
         <div class="row">
         <div class="input-field col s12">
             <input id="Title" name="Title" type="text" class="active">
-            <label for="Title">Add a Holiday</label>
+            <label for="Title">Add a Destination /Country   (Example : Scotland) </label>
         </div>
         </div>
+
+
+
+
 
     </form>
     </div>
 
-    <div class="row">
+      
+      
+      </div>
+      
+    </li>
+    
+    
+  </ul>
+
+    <div class="row holidays_added">
 
         <div class="lines"></div>
 
@@ -46,8 +73,9 @@
                      <div class="col s8 Holiday_title">{{holiday.Title}} </div>
 
                        <div class="col s4 buttons">
-                    <a href="{{url_for('delete_holiday',Holidays_id=holiday._id)}}" class="waves-effect waves-light btn">Delete</a>
-                    <a class="waves-effect waves-light btn">Edit</a>
+                        <a class="waves-effect waves-light btn"><i class="material-icons">psychology</i>Add a memory</a>
+                    <a href="{{url_for('delete_holiday',Holidays_id=holiday._id)}}" class="waves-effect waves-light btn"><i class="material-icons">delete</i>Delete</a>
+                    
 
                     </div>
 

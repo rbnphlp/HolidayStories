@@ -64,7 +64,7 @@ def added_holiday_memories():
     {"$unwind":"$Holiday_Memories"}
     ])
 
-    return(render_template("Add_memories.html",memories=holiday_memories))
+    return(render_template("Added_memories.html",memories=holiday_memories))
 
 
 "Add Holidays Page"
@@ -75,7 +75,7 @@ def Add_Holidays():
 
     Holidays = mongo.db.Holidays
     Holidays.insert_one(request.form.to_dict())
-
+    
 
     return(redirect(url_for("get_holidays")))
 
