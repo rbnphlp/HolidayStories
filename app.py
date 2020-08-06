@@ -94,7 +94,15 @@ def delete_holiday(Holidays_id):
 
     
 
+" Send Holidays Id   into Memories Page"
+@app.route("/Add_memories/<Holidays_id>")
+def Add_memories(Holidays_id):
 
+    
+    Holiday=mongo.db.Holidays.find_one({"_id": ObjectId(Holidays_id)})
+
+    Holiday_title=Holiday['Title']
+    return(render_template('Add_memories.html',Holiday_title=Holiday_title))
 
 
 
