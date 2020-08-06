@@ -33,8 +33,13 @@ width: 75%;
 input#submit_title {
     display: none;
 }
-
 .holidays_added{
 
     padding-top :0.75em;
+}
+
+/** Add Memory Page configs**/
+
+.submit_memory{
+    text-align: center;
 }
