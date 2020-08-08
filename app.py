@@ -151,16 +151,6 @@ def get_aws_files():
     return(render_template("aws_files.html",my_bucket=my_bucket,files=summaries))
 
 
-
-<<<<<<< HEAD
-=======
-@app.route("/upload_aws_files")
-def upload_to_aws():
-
-    
-
-
->>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 if __name__=="__main__":
         app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
