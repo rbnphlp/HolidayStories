@@ -135,7 +135,8 @@ def Submit_Memory(Holidays_id):
 
 @app.route("/get_aws_files")
 def get_aws_files():
-
+    print(AC_KEY)
+    print(S_Key)
     my_bucket=s3.Bucket(S3_bucket)
     summaries=my_bucket.objects.all()
     
