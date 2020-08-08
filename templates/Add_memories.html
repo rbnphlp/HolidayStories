@@ -31,7 +31,7 @@
         <div class="row">
 
         
-        <form   action="{{url_for('Submit_Memory',Holidays_id=Holiday)}}" class="col s12" method="POST">
+        <form   action="{{url_for('Submit_Memory',Holidays_id=Holiday._id)}}" class="col s12" method="POST">
             
             <div class="row">
             <div class="input-field col s12">
@@ -83,7 +83,7 @@
 
         <!--Submit button-->
         <div class="row submit_memory">
-        <button href="{{url_for('Submit_Memory',Holidays_id=Holiday)}}" class="btn waves-effect waves-light" >Submit
+        <button href="{{url_for('Submit_Memory',Holidays_id=Holiday._id)}}" class="btn waves-effect waves-light" >Submit
             <i class="material-icons right">cloud</i>
         </button>
         </div>

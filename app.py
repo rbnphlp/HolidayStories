@@ -2,12 +2,13 @@
 from flask import Flask,render_template,request,redirect,url_for
 from flask_pymongo import PyMongo 
 import requests
-from bson.objectid import ObjectId
+from bson import ObjectId,json_util
 import os 
 from dotenv import load_dotenv
 import ast
 import boto3
 
+import json
 
 "Load enviornment variables"
 load_dotenv()
@@ -127,12 +128,24 @@ def Add_memories(Holidays_id):
 
 @app.route("/Submit_Memory/<Holidays_id>",methods=["GET","POST"])
 def Submit_Memory(Holidays_id):
-    print("Hello")
-    print("Holidays passed: "+ Holidays_id)
-    print("form"+str(request.form.to_dict()))
+    
+
+    "Jsonify data returned from mongodb"
+    jsoned_holidays=json.loads(json_util.dumps(Holidays_id))
+
+    print('jsoned_holiday'+jsoned_holidays)
+    "Get holiday id "
+    Holidays_id_=jsoned_holidays
+
+
+    " convert id into a dic type and"
+    form_dict= request.form.to_dict()
+
+
+    form_dict["Holidays_id"]=ObjectId(Holidays_id_)
     Memories_db=mongo.db.Memories
 
-    Memories_db.insert(request.form.to_dict())
+    Memories_db.insert(form_dict)
 
 
     return(render_template('Add_memories.html',Holiday=Holidays_id))
@@ -149,6 +162,18 @@ def get_aws_files():
     
 
     return(render_template("aws_files.html",my_bucket=my_bucket,files=summaries))
+
+
+@app.route("/upload/<Holidays_id>",methods=["POST"])
+def upload():
+
+    file=request.files['file']
+    my_bucket=s3.Bucket(S3_bucket)
+    my_bucket.Object(file.filename).put(Body=file)
+
+
+    return("uploaded")
+
 
 
 if __name__=="__main__":
