@@ -7,12 +7,22 @@ import os
 from dotenv import load_dotenv
 import ast
 import boto3
+<<<<<<< HEAD
+=======
+
+>>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 
 
 "Load enviornment variables"
 load_dotenv()
 
 MONGO_URI=os.getenv("MONGO_URI")
+
+
+S3_bucket=os.getenv("S3_bucket")
+S_Key=os.getenv("S_KEY")
+AC_KEY=os.getenv("AC_KEY")
+
 
 "Configure flask app "
 
@@ -25,6 +35,7 @@ mongo=PyMongo(app)
 
 
 
+<<<<<<< HEAD
 "Set up S3"
 
 S3_bucket=os.getenv("S3_bucket")
@@ -38,6 +49,11 @@ s3 = boto3.resource('s3',
 
 
 
+=======
+s3 = boto3.resource('s3',
+        aws_access_key_id=AC_KEY,
+        aws_secret_access_key= S_Key)
+>>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 
 
 @app.route('/')
@@ -126,17 +142,18 @@ def Add_memories(Holidays_id):
 def Submit_Memory(Holidays_id):
     print("Hello")
     print("Holidays passed: "+ Holidays_id)
+    print("form"+str(request.form.to_dict()))
     Memories_db=mongo.db.Memories
-    
-    Memories_db.insert_many([request.form.to_dict(),dict(Holidays_id)])
+
+    Memories_db.insert(request.form.to_dict())
+
+
     return(render_template('Add_memories.html',Holiday=Holidays_id))
 
 
 
 @app.route("/get_aws_files")
 def get_aws_files():
-    print(AC_KEY)
-    print(S_Key)
     my_bucket=s3.Bucket(S3_bucket)
     summaries=my_bucket.objects.all()
     
@@ -148,6 +165,15 @@ def get_aws_files():
 
 
 
+<<<<<<< HEAD
+=======
+@app.route("/upload_aws_files")
+def upload_to_aws():
+
+    
+
+
+>>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 if __name__=="__main__":
         app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
