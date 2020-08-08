@@ -1,30 +1,13 @@
-<<<<<<< HEAD
 boto3==1.14.38
 botocore==1.17.38
 click==7.1.2
-=======
-awscli==1.18.114
-botocore==1.17.37
-click==7.1.2
-colorama==0.4.3
->>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 dnspython==2.0.0
 docutils==0.15.2
 Flask==1.1.2
 Flask-PyMongo==2.3.0
 itsdangerous==1.1.0
 jmespath==0.10.0
-<<<<<<< HEAD
 pymongo==3.11.0
 python-dotenv==0.14.0
-=======
-numpy==1.19.1
-pandas==1.1.0
-pyasn1==0.4.8
-pymongo==3.11.0
-python-dotenv==0.14.0
-pytz==2020.1
-rsa==4.5
->>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 s3transfer==0.3.3
 Werkzeug==1.0.1
