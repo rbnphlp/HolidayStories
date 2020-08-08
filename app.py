@@ -7,10 +7,6 @@ import os
 from dotenv import load_dotenv
 import ast
 import boto3
-<<<<<<< HEAD
-=======
-
->>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 
 
 "Load enviornment variables"
@@ -35,7 +31,6 @@ mongo=PyMongo(app)
 
 
 
-<<<<<<< HEAD
 "Set up S3"
 
 S3_bucket=os.getenv("S3_bucket")
@@ -46,14 +41,6 @@ AC_KEY=os.getenv("AC_KEY")
 s3 = boto3.resource('s3',
         aws_access_key_id=AC_KEY,
         aws_secret_access_key= S_Key)
-
-
-
-=======
-s3 = boto3.resource('s3',
-        aws_access_key_id=AC_KEY,
-        aws_secret_access_key= S_Key)
->>>>>>> a596a4f129875f6882d15e909ee7d52993637ad4
 
 
 @app.route('/')
