@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 import os 
 from dotenv import load_dotenv
 import ast
+import boto3
 
 
 "Load enviornment variables"
@@ -22,6 +23,18 @@ app.config["MONGO_URI"]=MONGO_URI
 
 mongo=PyMongo(app)
 
+
+
+"Set up S3"
+
+S3_bucket=os.getenv("S3_bucket")
+S_Key=os.getenv("S_KEY")
+AC_KEY=os.getenv("AC_KEY")
+
+
+s3 = boto3.resource('s3',
+        aws_access_key_id=AC_KEY,
+        aws_secret_access_key= S_Key)
 
 
 
@@ -117,6 +130,21 @@ def Submit_Memory(Holidays_id):
     
     Memories_db.insert_many([request.form.to_dict(),dict(Holidays_id)])
     return(render_template('Add_memories.html',Holiday=Holidays_id))
+
+
+
+@app.route("/get_aws_files")
+def get_aws_files():
+
+    my_bucket=s3.Bucket(S3_bucket)
+    summaries=my_bucket.objects.all()
+    
+    print("my bucket"+str(my_bucket))
+    
+    
+
+    return(render_template("aws_files.html",my_bucket=my_bucket,files=summaries))
+
 
 
 if __name__=="__main__":
