@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+
+<html>
+
+
+<body>
+    
+
+
+{% block content %}
+
+
+<div class="container">
+
+
+<div class="row">
+
+
+<h3>BUCKet INFo </h3>
+<p> Created  {{my_bucket.creation_date}}</p>
+<hr>
+
+{% for f in files %}
+
+{{f.key}} <br>
+{{f.last_modified}}
+
+{% endfor %}
+
+</div>
+  
+
+
+
+</div>
+
+{% endblock %}
+
+</body>
+
+</html>
+
+
+ 
