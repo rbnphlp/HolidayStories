@@ -156,20 +156,33 @@ def Submit_Memory(Holidays_id):
 
         form_dict["Holidays_id"]=ObjectId(Holidays_id_)
         Memories_db=mongo.db.Memories
-
-        Memories_db.insert(form_dict)
-        "Submission form for AWS for the image"
-        file=request.files['File_submission']
-        my_bucket=s3.Bucket(S3_bucket)
-        my_bucket.Object(file.filename).put(Body=file)
-
-        print("my bucket"+str(my_bucket))
-    
+        Memory_id=Memories_db.insert(form_dict)
 
 
+          
+        "Add image Path for the Image link"
+        if request.files['File_submission'].filename == '':
+            print("No file sumbitted ")
+        else:
+           
+            " Get Memory Id for the inserted image"
+            print("Memory_id"+str(Memory_id))
+            memory_img="https://holidaystories.s3.eu-west-2.amazonaws.com/"+str(Holidays_id_) +"/"+"Memory"+str(Memory_id)+".jpg"
 
+            "submit Memory_link to mongo"
+            print("Inserting Memory Img Link to mong")
+            Memories_db.update({"_id":Memory_id},{"$set": {"Memory_uploaded":memory_img}})
 
-    "Add a popup once submission for an image : "
+            "Submission form for AWS for the image"
+            
+            file=request.files['File_submission']
+
+            file.filename=str(Holidays_id_)+"/"+"Memory"+str(Memory_id)+".jpg"
+            my_bucket=s3.Bucket(S3_bucket)
+            "give permissions to make file public so readable:"
+            my_bucket.Object(file.filename).put(Body=file,ACL='public-read')
+
+            print("my bucket"+str(my_bucket))
 
 
     return(redirect(url_for('get_memories',Holiday=Holidays_id)))
