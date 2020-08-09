@@ -31,20 +31,20 @@
         <div class="row">
 
         
-        <form   action="{{url_for('Submit_Memory',Holidays_id=Holiday._id)}}" class="col s12" method="POST">
+        <form   action="{{url_for('Submit_Memory',Holidays_id=Holiday._id)}}" class="col s12" method="POST" enctype="multipart/form-data">
             
             <div class="row">
             <div class="input-field col s12">
-                <input id="Title" name="Title" type="text" class="active">
+                <input id="Title" name= "Text_submission" type="text" class="active" >
                 <label for="Title">Enter a Title for your  Memory (Example: Day1 : Reached Kebnakaise) </label>
-                  <input id="submit_title" name="submit_title" type="submit" class="active">
+                 
             </div>
             </div>
             <!--Enter  a Date -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">today</i>
-                <input id="due_date" name="due_date" type="text" class="datepicker">
+                <input id="due_date" name= "Text_submission" type="text" class="datepicker" >
                 <label for="icon_prefix">Enter a Date </label>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <!-- Need to wire this up-->    
         <div class="row">
         <div class="input-field col s12">
-            <input id="Location" name="Location" type="text" class="active">
+            <input id="Location" name= "Text_submission" type="text" class="active" >
             <label for="Location"> <i class="material-icons">location_on</i>Enter a Location   (Example : Aberdeen) </label>
         </div>
         </div>
@@ -63,21 +63,16 @@
         <div class="row">
           <div class="input-field col s12">
             <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-            <input id="Description" name="Description" type="text" class="active">
+            <input id="Description" name="Text_submission" type="text" class="active" >
             <label for="Description"><i class="material-icons">description</i>Enter  a Description for your memory ( Example : Arrived at Hotel late ,getting a early kip) </label>
           </div>
         </div>
 
+        
         <div class="row">
-            <div class="file-field input-field">
-            <div class="btn">
-            <span>File</span>
-            <input type="file" multiple>
-            </div>
-            <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" placeholder="Upload one or more images">
-            </div>
-        </div>
+      
+        <input type="file" name="File_submission" class="active">
+        
         </div>
     
 

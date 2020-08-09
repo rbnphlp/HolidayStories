@@ -56,6 +56,12 @@ def get_holidays():
     return(render_template("Add_Holiday.html",holidays=Holidays))
 
 
+@app.route('/get_memories/',methods=["GET","POST"])
+def get_memories():
+    
+    return(render_template("Add_Holiday.html",holidays=mongo.db.Holidays.find()))
+
+
 "Read Holiday Pages for Holiday only Pages"
 
 @app.route("/add_holidays",methods=["GET","POST"])
@@ -129,26 +135,47 @@ def Add_memories(Holidays_id):
 @app.route("/Submit_Memory/<Holidays_id>",methods=["GET","POST"])
 def Submit_Memory(Holidays_id):
     
+    "if form = submit memory "
+    if 'Text_submission' in request.form:
 
-    "Jsonify data returned from mongodb"
-    jsoned_holidays=json.loads(json_util.dumps(Holidays_id))
+        print("submitting Text infor to mongo")
 
-    print('jsoned_holiday'+jsoned_holidays)
-    "Get holiday id "
-    Holidays_id_=jsoned_holidays
-
-
-    " convert id into a dic type and"
-    form_dict= request.form.to_dict()
+        print("form info "+ str(request.form))
+        "Jsonify data returned from mongodb"
+        jsoned_holidays=json.loads(json_util.dumps(Holidays_id))
 
 
-    form_dict["Holidays_id"]=ObjectId(Holidays_id_)
-    Memories_db=mongo.db.Memories
+        print('jsoned_holiday'+jsoned_holidays)
+        "Get holiday id "
+        Holidays_id_=jsoned_holidays
 
-    Memories_db.insert(form_dict)
+
+        " convert id into a dic type and"
+        form_dict= request.form.to_dict()
 
 
-    return(render_template('Add_memories.html',Holiday=Holidays_id))
+        form_dict["Holidays_id"]=ObjectId(Holidays_id_)
+        Memories_db=mongo.db.Memories
+
+        Memories_db.insert(form_dict)
+    
+    elif 'File_submission' in request.form:
+        
+        
+        file=request.files['File_submission']
+        my_bucket=s3.Bucket(S3_bucket)
+        my_bucket.Object(file.filename).put(Body=file)
+
+        print("my bucket"+str(my_bucket))
+    
+
+
+
+
+    "Add a popup once submission for an image : "
+
+
+    return(redirect(url_for('get_memories',Holiday=Holidays_id)))
 
 
 
