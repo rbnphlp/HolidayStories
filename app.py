@@ -39,6 +39,13 @@ S_Key=os.getenv("S_KEY")
 AC_KEY=os.getenv("AC_KEY")
 
 
+
+client = boto3.client('s3',
+                          region_name='eu-west-2',
+                          
+                          aws_access_key_id=AC_KEY,
+                          aws_secret_access_key=S_Key)
+
 s3 = boto3.resource('s3',
         aws_access_key_id=AC_KEY,
         aws_secret_access_key= S_Key)
@@ -164,25 +171,30 @@ def Submit_Memory(Holidays_id):
         if request.files['File_submission'].filename == '':
             print("No file sumbitted ")
         else:
+
+            "get some information for file upload" 
+            file=request.files['File_submission']
+            content_type = request.mimetype
+            S3_bucket=os.getenv("S3_bucket")
+
            
             " Get Memory Id for the inserted image"
             print("Memory_id"+str(Memory_id))
-            memory_img="https://holidaystories.s3.eu-west-2.amazonaws.com/"+str(Holidays_id_) +"/"+"Memory"+str(Memory_id)+".jpg"
+            memory_img="https://holidaystories.s3.eu-west-2.amazonaws.com/"+file.filename
 
             "submit Memory_link to mongo"
             print("Inserting Memory Img Link to mong")
             Memories_db.update({"_id":Memory_id},{"$set": {"Memory_uploaded":memory_img}})
 
             "Submission form for AWS for the image"
+           
             
-            file=request.files['File_submission']
-
-            file.filename=str(Holidays_id_)+"/"+"Memory"+str(Memory_id)+".jpg"
-            my_bucket=s3.Bucket(S3_bucket)
             "give permissions to make file public so readable:"
-            my_bucket.Object(file.filename).put(Body=file,ACL='public-read')
+            client.put_object(Body=file,Bucket=S3_bucket,
+                      Key=file.filename,
+                      ContentType='image/jpeg',ACL='public-read')
 
-            print("my bucket"+str(my_bucket))
+          
 
 
     return(redirect(url_for('get_memories',Holiday=Holidays_id)))
