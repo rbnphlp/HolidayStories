@@ -158,10 +158,7 @@ def Submit_Memory(Holidays_id):
         Memories_db=mongo.db.Memories
 
         Memories_db.insert(form_dict)
-    
-    elif 'File_submission' in request.form:
-        
-        
+        "Submission form for AWS for the image"
         file=request.files['File_submission']
         my_bucket=s3.Bucket(S3_bucket)
         my_bucket.Object(file.filename).put(Body=file)
