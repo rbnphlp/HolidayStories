@@ -60,7 +60,27 @@ def index():
 def get_holidays():
     
     Holidays = mongo.db.Holidays.find()
-    return(render_template("Add_Holiday.html",holidays=Holidays))
+
+    " Send a Holidays & Memeorues joined to the template"
+      
+    holiday_memories=mongo.db.Holidays.aggregate([{"$lookup": 
+                    {
+    "from": 'Memories',
+    "localField": '_id',
+    "foreignField": 'Holidays_id',
+    "as": 'Holiday_Memories'
+                    }} ,
+
+    {"$unwind":"$Holiday_Memories"}
+    ])
+
+    Memories=[]
+    for memory in holiday_memories:
+        str(Memories.append(memory['Holiday_Memories']['Holidays_id']))
+    
+
+
+    return(render_template("Add_Holiday.html",holidays=Holidays,Memories=Memories))
 
 
 @app.route('/get_memories/',methods=["GET","POST"])
@@ -69,12 +89,7 @@ def get_memories():
     return(render_template("Add_Holiday.html",holidays=mongo.db.Holidays.find()))
 
 
-"Read Holiday Pages for Holiday only Pages"
 
-@app.route("/add_holidays",methods=["GET","POST"])
-def added_holidays():
-
-    return(render_template("holidays.html",holidays=mongo.db.Holidays.find()))
 
 
 "Read Holidays and correponding memories"
@@ -197,31 +212,16 @@ def Submit_Memory(Holidays_id):
           
 
 
-    return(redirect(url_for('get_memories',Holiday=Holidays_id)))
+    return(redirect(url_for('get_holidays')))
 
 
+"For a given Holiday id Get all the memories: "
 
-@app.route("/get_aws_files")
-def get_aws_files():
-    my_bucket=s3.Bucket(S3_bucket)
-    summaries=my_bucket.objects.all()
-    
-    print("my bucket"+str(my_bucket))
-    
+@app.route("/view_memories")
+def view_memories():
+    return(None)
     
 
-    return(render_template("aws_files.html",my_bucket=my_bucket,files=summaries))
-
-
-@app.route("/upload/<Holidays_id>",methods=["POST"])
-def upload():
-
-    file=request.files['file']
-    my_bucket=s3.Bucket(S3_bucket)
-    my_bucket.Object(file.filename).put(Body=file)
-
-
-    return("uploaded")
 
 
 

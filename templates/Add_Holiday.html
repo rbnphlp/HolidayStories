@@ -70,12 +70,22 @@
                     <li>
                     
                     
-                     <div class="col s8 Holiday_title">{{holiday.Title}} </div>
+                     <div class="col s6 l6 Holiday_title">{{holiday.Title}} </div>
 
-                       <div class="col s4 buttons">
+                       <div class="col s6 l6 buttons">
                        <a href="{{url_for('Add_memories',Holidays_id=holiday._id)}}"class="waves-effect waves-light btn"><i class="material-icons">psychology</i>Add a memory</a>
                     <a href="{{url_for('delete_holiday',Holidays_id=holiday._id)}}" class="waves-effect waves-light btn"><i class="material-icons">delete</i>Delete</a>
                     
+                    <!--- View Memories if No Memories render  then no  memories add a memory for this holiday or else view memories :-->
+
+
+                    <!-- For each Holiday : get Memory id : if Memories  then add View button -->
+
+                    {% if holiday._id in Memories %}
+
+                        <a  class="waves-effect waves-light btn"><i class="material-icons">delete</i>View Memories</a>
+
+                    {% endif %}
 
                     </div>
 
