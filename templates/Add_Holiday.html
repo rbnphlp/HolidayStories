@@ -70,9 +70,9 @@
                     <li>
                     
                     
-                     <div class="col s6 l6 Holiday_title">{{holiday.Title}} </div>
+                     <div class="col s3 l4 Holiday_title">{{holiday.Title}} </div>
 
-                       <div class="col s6 l6 buttons">
+                       <div class="col s9 l8 buttons">
                        <a href="{{url_for('Add_memories',Holidays_id=holiday._id)}}"class="waves-effect waves-light btn"><i class="material-icons">psychology</i>Add a memory</a>
                     <a href="{{url_for('delete_holiday',Holidays_id=holiday._id)}}" class="waves-effect waves-light btn"><i class="material-icons">delete</i>Delete</a>
                     
@@ -83,7 +83,8 @@
 
                     {% if holiday._id in Memories %}
 
-                        <a  class="waves-effect waves-light btn"><i class="material-icons">delete</i>View Memories</a>
+                        <a  class="waves-effect waves-light btn"><i class="material-icons">visibility</i>View Memories</a>
+                         <a  class="waves-effect waves-light btn"><i class="material-icons">create</i>Edit Memories</a>
 
                     {% endif %}
 

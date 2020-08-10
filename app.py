@@ -75,12 +75,14 @@ def get_holidays():
     ])
 
     Memories=[]
+    Memory_ids=[]
     for memory in holiday_memories:
-        str(Memories.append(memory['Holiday_Memories']['Holidays_id']))
+        Memories.append(memory['Holiday_Memories']['Holidays_id'])
+        Memories.append(memory['Holiday_Memories']['_id'])
     
 
 
-    return(render_template("Add_Holiday.html",holidays=Holidays,Memories=Memories))
+    return(render_template("Add_Holiday.html",holidays=Holidays,Memories=Memories,Memories_id=Memory_ids))
 
 
 @app.route('/get_memories/',methods=["GET","POST"])
@@ -147,8 +149,23 @@ def Add_memories(Holidays_id):
     
     Holiday=mongo.db.Holidays.find_one({"_id": ObjectId(Holidays_id)})
 
- 
-    return(render_template('Add_memories.html',Holiday=Holiday))
+    " Check if memories is not null then  render with no "
+    Memories_check=mongo.db.Memories.find_one({"Holidays_id":ObjectId(Holidays_id)})
+    
+    Memories=mongo.db.Memories.find({"Holidays_id":ObjectId(Holidays_id)})
+    
+    
+    if Memories_check is None:
+        print("No Memory added")
+        Memory_to_show= render_template('Add_memories.html',Holiday=Holiday)
+    
+
+    else :
+        print("Memory already added")
+        
+        Memory_to_show=render_template('Add_extra_memories.html',Memories=Memories,Holiday=Holiday)
+
+    return(Memory_to_show)
 
 
 
@@ -157,8 +174,7 @@ def Add_memories(Holidays_id):
 @app.route("/Submit_Memory/<Holidays_id>",methods=["GET","POST"])
 def Submit_Memory(Holidays_id):
     
-    "if form = submit memory "
-    if 'Text_submission' in request.form:
+  
 
         print("submitting Text infor to mongo")
 
@@ -212,14 +228,22 @@ def Submit_Memory(Holidays_id):
           
 
 
-    return(redirect(url_for('get_holidays')))
+        return(redirect(url_for('Add_memories',Holidays_id=Holidays_id)))
 
+
+"Editt/Update Memories for a given Memory"
+
+@app.route("/edit_memories")
+def edit_memories():
+    "for a memory id  re- populate the form and and send add_memories"
 
 "For a given Holiday id Get all the memories: "
 
 @app.route("/view_memories")
 def view_memories():
+
     return(None)
+    
     
 
 

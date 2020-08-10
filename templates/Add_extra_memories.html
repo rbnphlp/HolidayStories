@@ -22,7 +22,7 @@
     </div>
 
 
-    
+     
     <ul class="collapsible">
     <li>
       <div class="collapsible-header"><i class="material-icons">psychology</i>Add a Memory</div>
@@ -94,7 +94,40 @@
     
     
   </ul>
+  
 
+<!-- Get Memories for the Memory Id  for date and time -->
+
+<div class="row Memories_Added">
+
+          
+            
+                {% for memory in Memories %}
+                <ul class="list">
+                   
+                    <li>
+                     <div class="col s3 l4 Holiday_title">{{memory['Title']}} </div>
+
+                       <div class="col s9 l8 buttons">
+                       <a href="{{url_for('edit_memories',Holidays_id=memory._id)}}"class="waves-effect waves-light btn"><i class="material-icons">create</i>Edit a memory</a>
+                    <a href="{{url_for('delete_holiday',Holidays_id=memory._id)}}" class="waves-effect waves-light btn"><i class="material-icons">delete</i>Delete a memory</a>
+
+                    </div>
+
+                    </li>
+                    
+                    
+                      
+                  
+                    
+
+                </ul>
+                  {% endfor %}   
+
+
+
+
+</div>
 
 
 
@@ -105,3 +138,5 @@
 </body>
 
 </html>
+
+
