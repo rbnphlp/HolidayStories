@@ -233,6 +233,23 @@ def Submit_Memory(Holidays_id):
 
 "Editt/Update Memories for a given Memory"
 
+@app.route("/delete_memories/<memory_id>")
+def delete_memories(memory_id):
+    
+    "Find Holidayid of the memory id: to pass on  "
+    Memories=mongo.db.Memories.find({"_id":ObjectId(memory_id)})
+    
+    print("getting memories")
+    for Memory in Memories:
+        Holiday_id=Memory['Holidays_id']
+    "Delete the Memory :"
+
+    mongo.db.Memories.remove({"_id": ObjectId(memory_id)})
+    
+    
+    return(redirect(url_for('Add_memories',Holidays_id=Holiday_id)))
+
+
 @app.route("/edit_memories")
 def edit_memories():
     "for a memory id  re- populate the form and and send add_memories"
