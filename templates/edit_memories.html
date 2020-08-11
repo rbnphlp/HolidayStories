@@ -1,0 +1,108 @@
+{% extends 'index.html' %}
+
+
+<html>
+
+
+<body>
+    
+
+
+{% block content %}
+
+
+<div class="container">
+
+
+
+    <div class="row">
+    
+    <h4>Update   your memory of  {{Title}}</h4>
+    
+    </div>
+
+
+     
+    <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">psychology</i>Edit a Memory</div>
+      <div class="collapsible-body">
+      
+        <div class="row">
+
+        
+        <form   action="{{url_for('update_memory',memory_id=Memory_id)}}" class="col s12" method="POST" enctype="multipart/form-data">
+            
+            <div class="row">
+            <div class="input-field col s12">
+                <input id="Title" name= "Title" type="text" class="active" value="{{ Title }}" >
+                <label for="Title">Enter a Title for your  Memory (Example: Day1 : Reached Kebnakaise) </label>
+                 
+            </div>
+            </div>
+            <!--Enter  a Date -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">today</i>
+                <input id="due_date" name= "Date" type="text" class="datepicker" value="{{ Date }}">
+                <label for="icon_prefix">Enter a Date </label>
+            </div>
+        </div>
+
+
+            <!-- Need to wire this up-->    
+        <div class="row">
+        <div class="input-field col s12">
+            <input id="Location" name= "Location" type="text" class="active" value="{{ Location }}" > 
+            <label for="Location"> <i class="material-icons">location_on</i>Enter a Location   (Example : Aberdeen) </label>
+        </div>
+        </div>
+      
+        
+          
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+            <input id="Description" name="Description" type="text" class="active" value="{{ Description }}">
+            <label for="Description"><i class="material-icons">description</i>Enter  a Description for your memory ( Example : Arrived at Hotel late ,getting a early kip) </label>
+          </div>
+        </div>
+
+        
+        <div class="row">
+      
+        <input type="file" name="File_submission" class="active">
+        
+        </div>
+    
+
+        <!--Submit button-->
+        <div class="row submit_memory">
+        <button href="{{url_for('update_memory',memory_id=Memory_id)}}" class="btn waves-effect waves-light" >Submit
+            <i class="material-icons right">cloud</i>
+        </button>
+        </div>
+
+    </form>
+    </div>
+
+      
+      
+      </div>
+      
+    </li>
+    
+    
+  </ul>
+  
+
+
+
+</div>
+
+{% endblock %}
+
+</body>
+
+</html>
+

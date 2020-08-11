@@ -14,26 +14,22 @@ import json
 load_dotenv()
 
 MONGO_URI=os.getenv("MONGO_URI")
-
-
 S3_bucket=os.getenv("S3_bucket")
 S_Key=os.getenv("S_KEY")
 AC_KEY=os.getenv("AC_KEY")
 
 
+
 "Configure flask app "
 
 app=Flask(__name__)
-
 app.config['MONGO_DBNAME']="HolidayStories"
 app.config["MONGO_URI"]=MONGO_URI
-
 mongo=PyMongo(app)
 
 
 
 "Set up S3"
-
 S3_bucket=os.getenv("S3_bucket")
 S_Key=os.getenv("S_KEY")
 AC_KEY=os.getenv("AC_KEY")
@@ -54,6 +50,7 @@ s3 = boto3.resource('s3',
 @app.route('/')
 def index():
     return ("Hello world! Test to deploy on heroku"+MONGO_URI)
+
 
 
 @app.route('/get_holidays',methods=["GET","POST"])
@@ -81,8 +78,10 @@ def get_holidays():
         Memories.append(memory['Holiday_Memories']['_id'])
     
 
-
     return(render_template("Add_Holiday.html",holidays=Holidays,Memories=Memories,Memories_id=Memory_ids))
+
+
+
 
 
 @app.route('/get_memories/',methods=["GET","POST"])
@@ -92,27 +91,6 @@ def get_memories():
 
 
 
-
-
-"Read Holidays and correponding memories"
-
-@app.route('/added_holiday_memories')
-def added_holiday_memories():
-   
-    "Do a join/lookup to get memories of the holiday specified :"
-
-    holiday_memories=mongo.db.Holidays.aggregate([{"$lookup": 
-                    {
-    "from": 'Memories',
-    "localField": '_id',
-    "foreignField": 'Holidays_id',
-    "as": 'Holiday_Memories'
-                    }} ,
-
-    {"$unwind":"$Holiday_Memories"}
-    ])
-
-    return(render_template("Added_memories.html",memories=holiday_memories))
 
 
 "Add Holidays Page"
@@ -250,11 +228,86 @@ def delete_memories(memory_id):
     return(redirect(url_for('Add_memories',Holidays_id=Holiday_id)))
 
 
-@app.route("/edit_memories")
-def edit_memories():
+@app.route("/edit_memories/<memory_id>")
+def edit_memories(memory_id):
     "for a memory id  re- populate the form and and send add_memories"
+    "query the memory_id values and re-populate the form "
+    Memories=mongo.db.Memories.find({"_id":ObjectId(memory_id)})
+    for Memory in Memories:
+        Memory_Title=Memory['Title']
+        print(Memory_Title)
+        Memory__Date=Memory['Date']
+        print(Memory__Date)
+        Memory_Description=Memory['Description']
+        print(Memory_Description)
+        Memory_Location=Memory['Location']
+        print(Memory_Location)
+        Memory_id=Memory['_id']
+    return(render_template('edit_memories.html',Title=Memory_Title,Date=Memory__Date,Description=Memory_Description,Location=Memory_Location,Memory_id=Memory_id))    
 
 "For a given Holiday id Get all the memories: "
+
+
+@app.route("/update_memory/<memory_id>",methods=["GET","POST"])
+def update_memory(memory_id):
+    "Send the new Values from form the form o "
+
+    print("submitting Text infor to mongo")
+
+    print("form info "+ str(request.form))
+   
+
+
+    Memories=mongo.db.Memories.find({"_id":ObjectId(memory_id)})
+    
+    print("getting memories")
+    for Memory in Memories:
+        Holiday_id=Memory['Holidays_id']
+    
+    " convert id into a dic type and"
+    form_dict= request.form.to_dict()
+
+    print(form_dict)
+    
+    
+    Memories_db=mongo.db.Memories
+
+
+    "Add image Path for the Image link"
+    if request.files['File_submission'].filename == '':
+        print("No file sumbitted updating Memories--- ")
+        Memories_db.update({"_id":ObjectId(memory_id)},{"$set": form_dict})
+    else:
+
+        "get some information for file upload" 
+        file=request.files['File_submission']
+        content_type = request.mimetype
+        S3_bucket=os.getenv("S3_bucket")
+
+        
+        " Get Memory Id for the inserted image"
+        
+        memory_img="https://holidaystories.s3.eu-west-2.amazonaws.com/"+file.filename
+
+        "submit Memory_link to mongo"
+        print("Inserting Memory Img Link to mong updating memories")
+
+        form_dict["Memory_uploaded"]=memory_img
+        Memories_db.update({"_id":ObjectId(memory_id)},{"$set": form_dict})
+
+        "Submission form for AWS for the image"
+        
+        
+        "give permissions to make file public so readable:"
+        client.put_object(Body=file,Bucket=S3_bucket,
+                    Key=file.filename,
+                    ContentType='image/jpeg',ACL='public-read')
+
+
+    return(redirect(url_for('Add_memories',Holidays_id= Holiday_id)))
+
+        
+
 
 @app.route("/view_memories")
 def view_memories():
