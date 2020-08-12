@@ -68,7 +68,7 @@ def get_Holiday_uniqueids():
 
     Holidays=[]
     for holiday in holiday_memories:
-        print(holiday)    
+            
         " Get a unique set of ids "
         Holidays.append(holiday['_id'])
 
@@ -345,15 +345,24 @@ def view_holidays():
     
     
     holiday_memories=query_Holiday_Memories()
-    unique_id=get_Holiday_uniqueids()
+    unique_id=list(get_Holiday_uniqueids())
+
+
+
+    holiday_data={}
 
     for holiday in holiday_memories:
-        print(holiday)
+       
         for _id in unique_id:
-            print(_id)
+            
             if _id in holiday.values():
-                print(holiday.values())
+                print("Each unique id"+str(_id))
+                
+                holiday_data['_id']=_id
 
+                holiday_data['Title']=holiday['Title']                
+                holiday_data['Memory']=holiday['Holiday_Memories']
+    print(holiday_data)             
 
 
     return(None)
