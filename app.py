@@ -47,7 +47,37 @@ s3 = boto3.resource('s3',
         aws_secret_access_key= S_Key)
 
 
-@app.route('/Home')
+def query_Holiday_Memories():
+
+    holiday_memories=mongo.db.Holidays.aggregate([{"$lookup": 
+                    {
+    "from": 'Memories',
+    "localField": '_id',
+    "foreignField": 'Holidays_id',
+    "as": 'Holiday_Memories'
+                    }} ,
+
+    {"$unwind":"$Holiday_Memories"}
+    ])
+    return(holiday_memories)
+
+
+
+def get_Holiday_uniqueids():
+    holiday_memories=query_Holiday_Memories()
+
+    Holidays=[]
+    for holiday in holiday_memories:
+        print(holiday)    
+        " Get a unique set of ids "
+        Holidays.append(holiday['_id'])
+
+    unique_ids=set(Holidays) # returns a dic
+    return(unique_ids)
+
+
+
+@app.route('/')
 def Home():
 
     return(render_template('index.html'))
@@ -309,9 +339,38 @@ def update_memory(memory_id):
 
         
 
+@app.route("/view_holidays")
+def view_holidays():
+    "Get Holidays only with memoroes : Title from Holidays , 1st Image from Memory  and From Date - to Date "
+    
+    
+    holiday_memories=query_Holiday_Memories()
+    unique_id=get_Holiday_uniqueids()
+
+    for holiday in holiday_memories:
+        print(holiday)
+        for _id in unique_id:
+            print(_id)
+            if _id in holiday.values():
+                print(holiday.values())
+
+
+
+    return(None)
+
+
 
 @app.route("/view_memories")
 def view_memories():
+    
+    
+    holiday_memories=query_Holiday_Memories()
+
+
+
+    
+        
+
 
     return(None)
     
