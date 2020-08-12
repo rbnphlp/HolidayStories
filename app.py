@@ -47,9 +47,10 @@ s3 = boto3.resource('s3',
         aws_secret_access_key= S_Key)
 
 
-@app.route('/')
-def index():
-    return ("Hello world! Test to deploy on heroku"+MONGO_URI)
+@app.route('/Home')
+def Home():
+
+    return(render_template('index.html'))
 
 
 
