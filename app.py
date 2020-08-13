@@ -55,9 +55,7 @@ def query_Holiday_Memories():
     "localField": '_id',
     "foreignField": 'Holidays_id',
     "as": 'Holiday_Memories'
-                    }} ,
-
-    {"$unwind":"$Holiday_Memories"}
+                    }} 
     ])
     return(holiday_memories)
 
@@ -345,27 +343,16 @@ def view_holidays():
     
     
     holiday_memories=query_Holiday_Memories()
-    unique_id=list(get_Holiday_uniqueids())
-
-
-
-    holiday_data={}
-
-    for holiday in holiday_memories:
-       
-        for _id in unique_id:
-            
-            if _id in holiday.values():
-                print("Each unique id"+str(_id))
-                
-                holiday_data['_id']=_id
-
-                holiday_data['Title']=holiday['Title']                
-                holiday_data['Memory']=holiday['Holiday_Memories']
-    print(holiday_data)             
-
-
+    
+    holiday_mem=[]
+    for h_memory in holiday_memories:
+        
+        " un-dict at row level"
+        holiday_mem.append({h_memory['Holiday_Memories'],h_memory['_id'],h_memory['Title'],h_memory['D']})
+        
+    print(holiday_mem)
     return(None)
+
 
 
 
