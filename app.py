@@ -344,14 +344,19 @@ def view_holidays():
     
     holiday_memories=query_Holiday_Memories()
     
-    holiday_mem=[]
+    hdata={}
     for h_memory in holiday_memories:
         
-        " un-dict at row level"
-        holiday_mem.append({h_memory['Holiday_Memories'],h_memory['_id'],h_memory['Title'],h_memory['D']})
-        
-    print(holiday_mem)
-    return(None)
+
+        if  h_memory['_id'] not in hdata.keys():
+            hdata[h_memory['_id']]=h_memory
+            
+    for i in hdata.values():
+        if len(i['Holiday_Memories'])>0:
+            print(i['Holiday_Memories'][0]['Memory_uploaded'])
+
+    
+    return(render_template('view_Holidays.html',holiday_memories=hdata))
 
 
 
