@@ -56,3 +56,26 @@ input#submit_title {
 .submit_memory{
     text-align: center;
 }
+
+
+
+/**** View Memories  page css *****/
+
+.holiday_img { 
+
+    overflow: hidden; 
+    text-align: center;
+    
+}
+
+
+
+span a {
+    background: #222;
+    color: #fff;
+    display: inline-block;
+    /* float:left;  remove */
+    margin: 10px 10px 0 0;
+    padding: 5px 10px
+}
+

@@ -352,6 +352,10 @@ def view_holidays():
             hdata[h_memory['_id']]=h_memory
             
     for i in hdata.values():
+        
+        print(i['Title'])
+        if len(i['Holiday_Memories'])>0:
+            print("do nothing")
         if len(i['Holiday_Memories'])>0:
             print(i['Holiday_Memories'][0]['Memory_uploaded'])
 
