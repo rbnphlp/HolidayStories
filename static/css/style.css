@@ -79,3 +79,32 @@ span a {
     padding: 5px 10px
 }
 
+img.responsive-img.card.materialbox {
+
+height:250px;
+width:250px;
+object-fit: cover;
+}
+
+
+
+.memories{
+
+
+    padding-bottom: 10em;
+    height:50em;
+}
+
+.memories .row{
+
+    padding-top: 2em;
+}
+card .card-image img {
+
+    height:200px;
+    width: 200px;
+}
+
+
+
+.carousel {height: 500px;}

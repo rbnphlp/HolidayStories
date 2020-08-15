@@ -10,6 +10,7 @@ import boto3
 
 import json
 
+
 "Load enviornment variables"
 load_dotenv()
 
