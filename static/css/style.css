@@ -68,17 +68,14 @@ input#submit_title {
     
 }
 
-
-
-span a {
-    background: #222;
-    color: #fff;
+.holiday_img a span {
+   
+    color: #222;
     display: inline-block;
     /* float:left;  remove */
     margin: 10px 10px 0 0;
     padding: 5px 10px
 }
-
 img.responsive-img.card.materialbox {
 
 height:250px;
