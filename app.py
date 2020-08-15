@@ -337,6 +337,7 @@ def update_memory(memory_id):
 
         
 
+
 @app.route("/view_holidays")
 def view_holidays():
     "Get Holidays only with memoroes : Title from Holidays , 1st Image from Memory  and From Date - to Date "
@@ -351,13 +352,7 @@ def view_holidays():
         if  h_memory['_id'] not in hdata.keys():
             hdata[h_memory['_id']]=h_memory
             
-    for i in hdata.values():
-        
-        print(i['Title'])
-        if len(i['Holiday_Memories'])>0:
-            print("do nothing")
-        if len(i['Holiday_Memories'])>0:
-            print(i['Holiday_Memories'][0]['Memory_uploaded'])
+ 
 
     
     return(render_template('view_Holidays.html',holiday_memories=hdata))
@@ -365,20 +360,17 @@ def view_holidays():
 
 
 
-@app.route("/view_memories")
-def view_memories():
+@app.route("/view_memories/<Holidays_id>")
+def view_memories(Holidays_id):
     
+    print(Holidays_id)
+    "query memories for a given id and send memory data :"
+    Memories_data=mongo.db.Memories.find({"Holidays_id":ObjectId(Holidays_id)})
+
+
     
-    holiday_memories=query_Holiday_Memories()
-
-
-
-    
-        
-
-
-    return(None)
-    
+    return(render_template('View_Memories.html',Memories=Memories_data))
+   
     
 
 

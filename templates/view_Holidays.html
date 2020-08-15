@@ -47,7 +47,7 @@
                         <div class="holiday_img col s6 m4 l3">
 
                         <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox" >
-                        <span>{{i['Title']}}</span>
+                        <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span>{{i['Title']}}</span></a>
                         </div>            
                     
                     
