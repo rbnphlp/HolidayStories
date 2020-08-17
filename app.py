@@ -101,7 +101,7 @@ def Home():
 @app.route('/get_holidays',methods=["GET","POST"])
 def get_holidays():
     
-    Holidays = mongo.db.Holidays.find()
+    Holidays = mongo.db.Holidays.find().sort([( '$natural', -1 )] )
 
     " Send a Holidays & Memeorues joined to the template"
       
@@ -359,7 +359,7 @@ def view_holidays():
     "Get Holidays only with memoroes : Title from Holidays , 1st Image from Memory  and From Date - to Date "
     
     "Get Holidays info for upvote buton"
-    holidays=mongo.db.Holidays.find()
+    holidays=mongo.db.Holidays.find().sort([( '$natural', -1 )] )
     
     "No of images per holiday"
     Image_count=Memories_count()
