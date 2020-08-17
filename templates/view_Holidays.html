@@ -49,9 +49,12 @@
                         <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox" >
                         
                         <div class="likes">
-                            <a href="{{url_for('Add_Upvote',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span class="upvote"><i class="material-icons">thumb_up
+                            <a href="{{url_for('Add_Upvote',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span class="upvote"><i class="material-icons">favorite
                             </i> {{i['upvote']}}</a>
 
+                            <span><i class="material-icons">camera_alt
+                            </i> {{Image_count_data[i['Holiday_Memories'][0]['Holidays_id']| string()] }}
+                            </span>
                         </div>
 
 

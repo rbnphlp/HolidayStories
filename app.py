@@ -76,6 +76,21 @@ def get_Holiday_uniqueids():
 
 
 
+def Memories_count():
+
+    Memories_count=mongo.db.Memories.aggregate([
+
+        {"$match":{"Memory_uploaded" : {"$regex":"^https"}}},
+
+     
+
+         {"$match": {"Holidays_id" :{"$exists":"true"}}},
+
+		{"$group" : {"_id":"$Holidays_id", "count":{"$sum":1}}}
+	    ])
+    
+    return(Memories_count)
+
 @app.route('/')
 def Home():
 
@@ -345,20 +360,37 @@ def view_holidays():
     
     "Get Holidays info for upvote buton"
     holidays=mongo.db.Holidays.find()
-
-    holiday_memories=query_Holiday_Memories()
     
-    hdata={}
-    for h_memory in holiday_memories:
+    "No of images per holiday"
+    Image_count=Memories_count()
+    Image_count_data={}
+    for count in Image_count:
+        Image_count_data[str(count['_id'])]=count['count']
+       
+
+    print(Image_count_data)
+   
+    holiday_memories=query_Holiday_Memories()
         
 
-        if  h_memory['_id'] not in hdata.keys():
-            hdata[h_memory['_id']]=h_memory
+    "Count no of images for memories:"
+
+
+
+    hdata={}
+    for h_memory in holiday_memories:
+    
+            if  h_memory['_id'] not in hdata.keys():
+                hdata[h_memory['_id']]=h_memory
+
+
+   
+               
             
- 
+  
 
     
-    return(render_template('view_Holidays.html',holiday_memories=hdata,holidays=holidays))
+    return(render_template('view_Holidays.html',holiday_memories=hdata,holidays=holidays,Image_count_data=Image_count_data))
 
 
 
