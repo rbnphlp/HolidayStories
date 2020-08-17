@@ -343,7 +343,9 @@ def update_memory(memory_id):
 def view_holidays():
     "Get Holidays only with memoroes : Title from Holidays , 1st Image from Memory  and From Date - to Date "
     
-    
+    "Get Holidays info for upvote buton"
+    holidays=mongo.db.Holidays.find()
+
     holiday_memories=query_Holiday_Memories()
     
     hdata={}
@@ -356,7 +358,7 @@ def view_holidays():
  
 
     
-    return(render_template('view_Holidays.html',holiday_memories=hdata))
+    return(render_template('view_Holidays.html',holiday_memories=hdata,holidays=holidays))
 
 
 
@@ -375,6 +377,15 @@ def view_memories(Holidays_id):
     
 
 
+@app.route("/Add_Upvote/<Holidays_id>")
+def Add_Upvote(Holidays_id):
+
+    "Insert upvote "
+    print(Holidays_id)
+
+    mongo.db.Holidays.update({'_id': ObjectId(Holidays_id)}, {'$inc': {'upvote': 1}},upsert=True  )
+    
+    return(redirect(url_for('view_holidays')))
 
 
 if __name__=="__main__":

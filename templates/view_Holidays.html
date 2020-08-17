@@ -45,11 +45,22 @@
             {%  if i['Holiday_Memories'] | length >0 %}
                     
                         <div class="holiday_img col s6 m4 l3">
-
-                        <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox" >
                         <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span>{{i['Title']}}</span></a>
+                        <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox" >
+                        
+                        <div class="likes">
+                            <a href="{{url_for('Add_Upvote',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span class="upvote"><i class="material-icons">thumb_up
+                            </i> {{i['upvote']}}</a>
+
+                        </div>
+
+
+
+                        
                         </div>            
-                    
+                    <!-- Get Memory images length and append it to camera image-->
+                    <!-- Get views -->
+                    <!-- Add an upvote button-->
                     
                   
                     
@@ -69,7 +80,6 @@
   </div>
 
 
-    
  {% endblock %}
 </body>
 
