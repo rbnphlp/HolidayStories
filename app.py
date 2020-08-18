@@ -56,7 +56,8 @@ def query_Holiday_Memories():
     "localField": '_id',
     "foreignField": 'Holidays_id',
     "as": 'Holiday_Memories'
-                    }} 
+                    }} ,
+    {"$sort": {"_id": -1}}
     ])
     return(holiday_memories)
 
