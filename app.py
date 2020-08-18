@@ -92,8 +92,8 @@ def Memories_count():
     
     return(Memories_count)
 
-@app.route('/')
-def Home():
+@app.route('/home')
+def home():
 
     return(render_template('index.html'))
 
@@ -374,7 +374,7 @@ def view_holidays():
     holiday_memories=query_Holiday_Memories()
         
 
-    "Count no of images for memories:"
+    ":"
 
 
 
@@ -403,9 +403,9 @@ def view_memories(Holidays_id):
     "query memories for a given id and send memory data :"
     Memories_data=mongo.db.Memories.find({"Holidays_id":ObjectId(Holidays_id)})
 
-
     
-    return(render_template('View_Memories.html',Memories=Memories_data))
+    
+    return(render_template('View_Memories.html',Memories=Memories_data,Holidays_id=Holidays_id))
    
     
 

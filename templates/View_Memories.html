@@ -6,10 +6,28 @@
 
 <div class="container memories">
 
+   <div class="fixed-action-btn">
+        <a href="{{url_for('Add_memories',Holidays_id=Holidays_id)}}" class="btn-floating pulse btn-large red " >
+        
+        <i class="large material-icons">add</i>
+        </a>
+      
+        </div>
+
+
 <div class="row">
 
 <div class="carousel">
+
+
+
+
+
+
   {%  for memory in Memories %}
+
+
+     
 
     <div class="carousel-item">
   

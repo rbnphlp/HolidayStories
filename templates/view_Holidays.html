@@ -36,7 +36,7 @@
     <div class="section">
 
         <div class="fixed-action-btn">
-        <a href="{{url_for('get_holidays')}}" class="btn-floating btn-large red " >
+        <a href="{{url_for('get_holidays')}}" class="btn-floating pulse btn-large red " >
         
         <i class="large material-icons">add</i>
         </a>
@@ -53,7 +53,11 @@
                     
                         <div class="holiday_img col s6 m4 l3">
                         <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span>{{i['Title']}}</span></a>
-                        <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox" >
+
+                        <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}">
+                        <img src="{{i['Holiday_Memories'][0]['Memory_uploaded']}}" class="responsive-img card materialbox hoverable z-depth-5" >
+                        
+                        </a>
                         
                         <div class="likes">
                             <a href="{{url_for('Add_Upvote',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span class="upvote"><i class="material-icons">favorite
