@@ -39,6 +39,7 @@
   
   </nav>
  
+  
 
     {% block content %} 
     {% endblock %}
@@ -97,12 +98,19 @@
        <!--- Add jquery script to make collapsible-->
        
         <script type="text/javascript">
-        $(document).ready(function() {
-            $('.collapsible').collapsible();
-        })
-                    $('select').material_select();
 
-    $('.datepicker').pickadate({
+          document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+      
+'.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 15, // Creates a dropdown of 15 years to control year,
             today: 'Today',
@@ -123,7 +131,8 @@
   $(document).ready(function(){
     $('.fixed-action-btn').floatingActionButton();
   });
-    
+
+
     </script>
     
 

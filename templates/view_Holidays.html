@@ -53,11 +53,10 @@
                     
                         <div class="holiday_img col s6 m4 l3">
                         <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span>{{i['Title']}}  
-                         <a href="{{url_for('delete_holiday',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}" class="btn-floating  red"><i class="material-icons">delete</i></a></span></a>
-
-
-                        
                        
+                        
+                        <a href="{{url_for('delete_holiday',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}" class="btn-flat delete_button"><i class="material-icons">delete</i></a></span></a>
+
                            
 
 
@@ -81,6 +80,7 @@
                             </i> {{Image_count_data[i['Holiday_Memories'][0]['Holidays_id']| string()] }}
                             </span>
                         </div>
+                         
 
 
 

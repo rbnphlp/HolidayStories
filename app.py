@@ -404,8 +404,15 @@ def view_memories(Holidays_id):
     Memories_data=mongo.db.Memories.find({"Holidays_id":ObjectId(Holidays_id)})
 
     
-    
-    return(render_template('View_Memories.html',Memories=Memories_data,Holidays_id=Holidays_id))
+
+
+
+    holiday=mongo.db.Holidays.find({"_id":ObjectId(Holidays_id)})
+    for holiday in holiday:
+        hdata=holiday['Title']
+
+
+    return(render_template('View_Memories.html',Memories=Memories_data,Holidays_id=Holidays_id,hdata=hdata))
    
     
 

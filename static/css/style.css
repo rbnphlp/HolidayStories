@@ -96,10 +96,12 @@ object-fit: cover;
 
     padding-top: 2em;
 }
-card .card-image img {
 
-    height:200px;
-    width: 200px;
+
+img.memory_img {
+
+    height:150px;
+    width: 150px;
 }
 
 
@@ -112,4 +114,8 @@ card .card-image img {
 
 
 
+}
+
+.delete_button{
+    color:red;
 }
