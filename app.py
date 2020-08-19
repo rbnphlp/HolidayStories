@@ -162,7 +162,7 @@ def delete_holiday(Holidays_id):
     mongo.db.Holidays.remove({"_id": ObjectId(Holidays_id)})
 
 
-    return(redirect(url_for("get_holidays")))
+    return(redirect(url_for("view_holidays")))
 
     
 
