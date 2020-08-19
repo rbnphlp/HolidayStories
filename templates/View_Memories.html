@@ -38,9 +38,25 @@
 
 
           <img src="{{memory['Memory_uploaded']}}">
-    
-        <a href="{{url_for('edit_memories',memory_id=memory['_id'])}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
- 
+
+            <div class="row">
+              <div class="fixed-action-btn">
+                        <a class="btn-floating btn-medium red">
+                            <i class="large material-icons">mode_edit</i>
+                        </a>
+                        <ul>
+                            <li><a href="{{url_for('edit_memories',memory_id=memory['_id'])}}" class="btn-floating green"><i class="material-icons">edit</i></a></li>
+                            <li><a href="{{url_for('delete_memories',memory_id=memory['_id'])}}" class="btn-floating  red"><i class="material-icons">delete</i></a>
+                                </li>
+                           
+                        </ul>
+                             </div>
+
+            
+            </div>
+            
+           
+        
         </div>
              <div class="card-content">
                 {{ "Title :" ~ memory['Title']}}

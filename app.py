@@ -271,7 +271,7 @@ def delete_memories(memory_id):
     mongo.db.Memories.remove({"_id": ObjectId(memory_id)})
     
     
-    return(redirect(url_for('Add_memories',Holidays_id=Holiday_id)))
+    return(redirect(url_for('view_memories',Holidays_id=Holiday_id)))
 
 
 @app.route("/edit_memories/<memory_id>")
@@ -350,7 +350,7 @@ def update_memory(memory_id):
                     ContentType='image/jpeg',ACL='public-read')
 
 
-    return(redirect(url_for('Add_memories',Holidays_id= Holiday_id)))
+    return(redirect(url_for('view_memories',Holidays_id= Holiday_id)))
 
         
 
