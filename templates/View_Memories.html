@@ -39,7 +39,8 @@
 
           <img src="{{memory['Memory_uploaded']}}">
     
-
+        <a href="{{url_for('edit_memories',memory_id=memory['_id'])}}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a>
+ 
         </div>
              <div class="card-content">
                 {{ "Title :" ~ memory['Title']}}
