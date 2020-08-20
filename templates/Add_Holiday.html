@@ -10,6 +10,25 @@
 
 {% block content %}
 
+  <nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+
+      <a href="{{url_for('home')}}" class="breadcrumb">
+        
+        Home</a>
+       <a href="{{url_for('view_holidays')}}" class="breadcrumb">
+        
+        Holiday Tales</a>
+      
+
+        <a href="{{url_for('get_holidays')}}" class="breadcrumb">
+        
+        Add a Holiday</a>
+      </div>
+      </div>
+    
+  </nav>
 
 <div class="container">
 

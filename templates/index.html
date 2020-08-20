@@ -26,19 +26,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
- <nav  role="navigation">
- 
-    <div class="nav-wrapper">
-      
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{url_for('home')}}">Home</a></li>
-        <li><a href="{{url_for('view_holidays')}}">Holidays</a></li>
-       
-      </ul>
-    </div>
-  
-  </nav>
- 
+
+
+
+
+
   
 
     {% block content %} 
@@ -99,28 +91,18 @@
        
         <script type="text/javascript">
 
-          document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, options);
-  });
-
-  // Or with jQuery
-
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-      
-'.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15, // Creates a dropdown of 15 years to control year,
-            today: 'Today',
-            clear: 'Clear',
-            close: 'Ok',
-            closeOnSelect: false // Close upon selecting a date,
-        });
-        $('.datepicker').on('mousedown',function(event){
-    event.preventDefault();
-})
+        
+        '.datepicker').pickadate({
+                    selectMonths: true, // Creates a dropdown to control month
+                    selectYears: 15, // Creates a dropdown of 15 years to control year,
+                    today: 'Today',
+                    clear: 'Clear',
+                    close: 'Ok',
+                    closeOnSelect: false // Close upon selecting a date,
+                });
+                $('.datepicker').on('mousedown',function(event){
+            event.preventDefault();
+        })
  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.fixed-action-btn');
     var instances = M.FloatingActionButton.init(elems, options);

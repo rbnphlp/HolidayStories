@@ -3,19 +3,28 @@
 
      {% block content %} 
 
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
 
+      <a href="{{url_for('home')}}" class="breadcrumb">
+        
+        Home</a>
+        <a href="{{url_for('view_holidays')}}" class="breadcrumb">
+        
+        Holiday Tales</a>
+         <a href="{{url_for('view_memories',Holidays_id=Holidays_id)}}" class="breadcrumb">
+        
+       Memories for {{hdata}}</a>
+
+      </div>
+      </div>
+    
+  </nav>
 <div class="container memories">
 
 
 
-   
-                    
-                    <div>
-                        <h5 class="center-align">Memories for {{hdata}}</h5>
-                    </div>
-
-
-     
 
    <div class="fixed-action-btn">
         <a href="{{url_for('Add_memories',Holidays_id=Holidays_id)}}" class="btn-floating pulse btn-large red " >

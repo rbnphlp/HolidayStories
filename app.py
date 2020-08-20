@@ -279,6 +279,8 @@ def edit_memories(memory_id):
     "for a memory id  re- populate the form and and send add_memories"
     "query the memory_id values and re-populate the form "
     Memories=mongo.db.Memories.find({"_id":ObjectId(memory_id)})
+
+    
     for Memory in Memories:
         Memory_Title=Memory['Title']
         print(Memory_Title)
@@ -289,7 +291,16 @@ def edit_memories(memory_id):
         Memory_Location=Memory['Location']
         print(Memory_Location)
         Memory_id=Memory['_id']
-    return(render_template('edit_memories.html',Title=Memory_Title,Date=Memory__Date,Description=Memory_Description,Location=Memory_Location,Memory_id=Memory_id))    
+        Holiday_id=Memory['Holidays_id']
+
+    "Get holidays info for the holidays title"
+    Holidays=mongo.db.Holidays.find({"_id":ObjectId(Holiday_id)})
+
+    for Holiday in Holidays:
+         Holiday_Title=Holiday['Title']
+
+    return(render_template('edit_memories.html',Title=Memory_Title,Date=Memory__Date,Description=Memory_Description,Location=Memory_Location,Memory_id=Memory_id,
+        Holiday_Title=Holiday_Title,Holiday_id=Holiday_id))    
 
 "For a given Holiday id Get all the memories: "
 

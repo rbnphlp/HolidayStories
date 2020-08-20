@@ -23,7 +23,6 @@
 <body>
 
 
-
     {% block content %} 
    
      <script type="text/javascript"
@@ -31,8 +30,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
+
+      <a href="{{url_for('home')}}" class="breadcrumb">
+        
+        Home</a>
+        <a href="{{url_for('view_holidays')}}" class="breadcrumb">
+        
+        Holiday Tales</a>
+      
+
+      </div>
+      </div>
+    
+  </nav>
+
 
   <div class="container">
+
+    
+
     <div class="section">
 
         <div class="fixed-action-btn">

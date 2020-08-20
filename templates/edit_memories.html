@@ -10,16 +10,33 @@
 
 {% block content %}
 
+<nav>
+    <div class="nav-wrapper">
+      <div class="col s12">
 
+      <a href="{{url_for('home')}}" class="breadcrumb">
+        
+        Home</a>
+        <a href="{{url_for('view_holidays')}}" class="breadcrumb">
+        
+        Holiday Tales</a>
+
+
+          <a href="{{url_for('view_memories',Holidays_id=Holiday_id)}}" class="breadcrumb">
+        
+       Memories for {{Holiday_Title}}</a>        
+         <a href="{{url_for('Add_memories',Holidays_id=Holiday_id)}}" class="breadcrumb">
+        
+       Edit a memory of {{Title}}</a>
+
+      </div>
+      </div>
+    
+  </nav>
 <div class="container">
 
 
     
-    <div class="row">
-    
-    <h4>Update   your memory of  {{Title}}</h4>
-    
-    </div>
 
 
      
