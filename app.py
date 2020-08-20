@@ -122,6 +122,7 @@ def get_holidays():
     for memory in holiday_memories:
         Memories.append(memory['Holiday_Memories']['Holidays_id'])
         Memories.append(memory['Holiday_Memories']['_id'])
+        
     
 
     return(render_template("Add_Holiday.html",holidays=Holidays,Memories=Memories,Memories_id=Memory_ids))
