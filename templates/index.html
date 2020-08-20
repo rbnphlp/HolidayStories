@@ -23,7 +23,7 @@
 
      <script type="text/javascript"
          src="{{ url_for('static', filename='js/init.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
@@ -92,7 +92,14 @@
         <script type="text/javascript">
 
         
-        '.datepicker').pickadate({
+     $(document).ready(function(){
+  $('.collapsible').collapsible('open', 0);
+  
+  });
+
+
+        
+       $('.datepicker').pickadate({
                     selectMonths: true, // Creates a dropdown to control month
                     selectYears: 15, // Creates a dropdown of 15 years to control year,
                     today: 'Today',

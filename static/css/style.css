@@ -119,3 +119,10 @@ img.memory_img {
 .delete_button{
     color:red;
 }
+
+
+#Title ,#due_date,#Location,#Description{
+
+padding: 35px;
+
+}
