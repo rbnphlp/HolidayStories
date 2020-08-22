@@ -131,3 +131,27 @@ padding: 35px;
 
     padding-left:25px;
 }
+
+.slider .slides li h3
+{
+    color: #FFC107;
+   
+}
+
+
+
+.slider .slides li h5
+{
+    color:"black";
+    font-style: oblique;
+   
+}
+
+nav{
+background-color :#5267a2;
+
+}
+.page-footer , .btn{
+background-color :#5267a2;
+
+}
