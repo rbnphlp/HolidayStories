@@ -1,1 +1,35 @@
 {% extends 'index.html' %}
+
+
+{% block content %}
+  <div class="slider fullscreen">
+    <ul class="slides">
+      <li>
+        <img src="{{ url_for('static', filename='img/diary.jpg') }}"> <!-- random image -->
+        <div class="caption center-align">
+          <h3>Add Memories from your favourite Holidays!</h3>
+          <h5 class="light grey-text text-lighten-3">Capture you Memories with a time-line to relive how exactly you felt at that special time.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+        <div class="caption left-align">
+          <h3>Share those  Memories</h3>
+          <h5 class="light grey-text text-lighten-3">Let us do the hardwork , and show-case that perfect Holiday </h5>
+        </div>
+      </li>
+      <li>
+        <img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->
+        <div class="caption right-align">
+          <h3>Holiday-Tales</h3>
+     
+        </div>
+      </li>
+  
+    </ul>
+  </div>   
+
+
+
+{% endblock %}
+
