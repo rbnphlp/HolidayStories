@@ -5,7 +5,28 @@
 
 <nav>
     <div class="nav-wrapper">
-      <div class="col s12">
+          <ul id="slide-out" class="side-nav">
+        <li> <a href="{{url_for('home')}}">
+        
+        Home</a></li>
+         <li><div class="divider"></div></li>
+        <li><a href="{{url_for('view_holidays')}}" >
+        
+        Holiday Tales</a></li>
+         <li><div class="divider"></div></li>
+
+        <li>  <a href="{{url_for('view_memories',Holidays_id=Holidays_id)}}" >
+        
+       Memories for {{hdata}}</a></li>
+         
+      
+  </ul>
+ <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+
+
+
+      <div class="container col s12">
 
       <a href="{{url_for('home')}}" class="breadcrumb">
         
