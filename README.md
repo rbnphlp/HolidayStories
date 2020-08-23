@@ -30,7 +30,7 @@ Initial wireframe used for developing a prototype :
 ## DB Design 
 
 + The MongoDb had two collections , Holidays and Memories :
-    - Holidays Collection simply had the title and Destination 
+    - Holidays Collection simply containg the title and Destination along with upvotes info
     - Memories Collection had the corresponding memory title , description , image url link along with each memory referencing the Holidays Collection by the unique        id.This allowed , to keep the Memories collection relatively small  and well within limit of 16MB for future uploads
     - Images are uploaded initially captured from form uploads , processed and uploaded to s3 using boto3.The corresponding link is then inserted along with form aguments to MongoDB for future retrieval. Any additional image uploaded for a same memory  will simply be replaced with the most recent image. And hence , Each Memory has one image with each holiday having multiple Memories.
 
@@ -47,7 +47,7 @@ Initial wireframe used for developing a prototype :
 
 > "*I want to share my holiday memories  for others to feedback * "
 
-> "*I  want a collage of memories of my favourite Holidays which tells a*"
+> "*I  want a collage of memories of my favourite Holidays which tells a story *"
 
 
 ## Design 
@@ -82,7 +82,7 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
 + HTML
 + CSS
 + Javascript
-+ Python (Flask , boto3, jinja, jsom)
++ Python (Flask , boto3, jinja, json)
 + Mongo-db
     
 ### Libraries /Frameworks:
@@ -106,17 +106,9 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
      - Loaded Holidays Page in  (Safari,Firefox and Chrome)
      - Works well in Desktop versions , Allignment issues when Title is long in Holidays Page for Laptop + Mobile views
      - Memories Page compatible in all views , however carousel is sometime non-responsive  on mobile versions
-     -
+     - Forms render well in all views , buttons however too big fo mobile view.
      
-+ Game Logic :
-    - Engine response for various chess openings from user 
-    - Queen Promotion
-    - Difficulty settings correctly queried against the engine
-    - Variety of game combinations tried :
-        
-            New game -> User Plays Game -> Switch to Black 
-            New Game -> Switch to Black
-            New Game -> Switch to Black -> Switch to White -> New Game
++
             
      
 + Full web page checks : 
