@@ -113,7 +113,8 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
      
 + Full web page checks : 
      - Tested all of the above on desktop (firefox and chrome) - *Other Screen sizes not implemented*
-     - Ran the web page for any html/css errors on https://validator.w3.org/
+     - Ran the web page for any html/css errors on https://validator.w3.org/ - issues with closing a tags
+
      
 ### Bug Fixes (Open & Closed) :
 
@@ -130,8 +131,11 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
 ## Deployment
 
 The Web pages was deployed through following :
-+ Set up  a index html and css folder and all the associated iages  in the master branch  folder 
-+ Setup github pages through https://help.github.com/en/enterprise/2.14/user/articles/configuring-a-publishing-source-for-     github-pages
++  Setting up a heroku app with login.
++ adding files through git remote 
++ made sure all keys + access keys were deleted and any accidentally uplodaded keys were rotated to new ones .All config variables were set to enviornment variables using Heroku set CLI and using a pylib dot env to read the env variables.
++ Build process through git remote heroku and push
+
 
 
 
