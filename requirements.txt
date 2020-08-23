@@ -20,5 +20,4 @@ redis==3.5.3
 s3transfer==0.3.3
 tinycss2==1.0.2
 Werkzeug==1.0.1
-json==2.0.9
-os
+
