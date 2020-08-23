@@ -88,10 +88,15 @@
             {%  if i['Holiday_Memories'] | length >0 %}
                     
                         <div class="holiday_img col s6 m3 l3">
-                        <a href="{{url_for('view_memories',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}"><span>{{i['Title']}}  
+                        
+
+                        <div class="chip">
+                        {{i['Title']}}
+                        
+                        </div>
                        
                         
-                        <a href="{{url_for('delete_holiday',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}" class="btn-flat delete_button"><i class="material-icons">delete</i></a></span></a>
+                        <a href="{{url_for('delete_holiday',Holidays_id=i['Holiday_Memories'][0]['Holidays_id'])}}" class="btn-flat delete_button"><i class="material-icons">delete</i></a>
 
                            
 
