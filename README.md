@@ -1,4 +1,4 @@
-![](https://github.com/rbnphlp/HolidayStories/blob/master/static/img/Screenshot%20from%202020-08-23%2016-57-25.png)	
+![](https://github.com/rbnphlp/HolidayStories/blob/master/static/img/Updatedresponsive.png)	
 # Web app to add & share your future holidays
 
 
