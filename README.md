@@ -121,7 +121,7 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
 
 | Bug-Location      | Bug-Type  | Bug-Status|
 | ------------- |:-------------:| ---------:|
-|  index.html   |  html-validation error | Fixed |
+|  view_jolidays.html   |  html-validation error | Fixed |
 |  index.html   |  html-validation error   |  Fixed |
 |  engine_me.js |   Black Pieces -game logic |  Fixed |
 |  engine_me.js |   New game -game logic |  Fixed |
