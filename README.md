@@ -17,8 +17,9 @@ UI is built on Materialise Framework.
 
     - A HomePage : Page explaining User needs and Web app Goals  
     - Holiday Tales Page : Page to display initial cover Images of Holidays along with a Title , likes & No of Images uploaded   
-    - Add a Holiday : A form page which allows users to add Holidays with a Title and Description
-    - Add  Memories : A fom page which allows users to add Memories with Title and Description
+    - Add a Holiday : A form page which allows users to add Holidays with a Title and Description (available as FAB at the bottom of page)
+    - Add  Memories : A fom page which allows users to add Memories with Title and Description (available as FAB at the bottom of page)
+    - Subsuquent Edit and Delete Pages from the above
     - Memories : Page displaying a carousel of Memories in a card image
 
 Initial wireframe used for developing a prototype :
