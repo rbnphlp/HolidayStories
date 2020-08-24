@@ -71,6 +71,7 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
     - Search bar based on Country,Date etc
     - USer profiles
     - A comment section
+    - Long titles and description can break up the container grid and hence need to povide a maximum in the form fields
 
 
 
