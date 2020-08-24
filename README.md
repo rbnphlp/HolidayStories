@@ -122,11 +122,9 @@ The Web-Pages are designed to make easy  add and share holiday memories and Imag
 | Bug-Location      | Bug-Type  | Bug-Status|
 | ------------- |:-------------:| ---------:|
 |  view_jolidays.html   |  html-validation error | Fixed |
-|  index.html   |  html-validation error   |  Fixed |
-|  engine_me.js |   Black Pieces -game logic |  Fixed |
-|  engine_me.js |   New game -game logic |  Fixed |
-|  myboard_jquery.js | Wrong pieces rendered |  Fixed |
-|   css &html |   Resposniveness -Screen moving when dragging not on Desktop Devices  |  Open |
+|  view_memories.html   |  html-validation error   |  Fixed |
+|  Various routes in Flask (Add_memories )|   logic |  Fixed |
+|   css &html |   Resposniveness - Carousel sometimes not responsive on mobile  |  Open |
 
 ## Deployment
 
