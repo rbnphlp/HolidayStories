@@ -2,7 +2,7 @@
 # Web app to add & share your future holidays
 
 
-The project as part of Module3:Code Institute is an attempt to allow user .
+The project as part of Module3:Code Institute  .
 
 
 Backend built on MongoDB , with AmazonS3 for Picture Storage and Flask Frame work.
