@@ -13,7 +13,7 @@ Flask-Resize==2.0.4
 itsdangerous==1.1.0
 jmespath==0.10.0
 pilkit==2.0
-Pillow==7.2.0
+Pillow==9.0.0
 pymongo==3.11.0
 python-dotenv==0.14.0
 redis==3.5.3
